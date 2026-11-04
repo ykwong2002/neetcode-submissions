@@ -1,0 +1,21 @@
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l, r = 1, max(piles) # l is min k, r is max k
+        res = r # max k
+
+        while l <= r:
+            k = (l + r) // 2
+            hours = 0
+            for bananas in piles:
+                hours += math.ceil(bananas / k)
+            
+            if hours <= h:
+                res = min(res, k)
+                r = k - 1
+            else:
+                l = k + 1
+        
+        return res
+            
+            
+        
